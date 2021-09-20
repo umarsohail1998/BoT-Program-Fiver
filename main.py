@@ -24,3 +24,6 @@ def get_browser():
 # opening the site in browser
 driver, wait = get_browser()
 driver.get('http://149.248.20.234:25500/login.php?referrer=/dashboard.php')
+
+
+# just writing demo comments 
