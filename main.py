@@ -1,40 +1,26 @@
-import time
+import os
+import pandas as pd
 from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.support.wait import WebDriverWait
+from webdriver_manager.chrome import ChromeDriverManager
 
 
-# Your Xtream account details
-user_name = "admin"
-user_password = "xcadmin"
+# function to open browser
+def get_browser():
+    os.environ['WDM_LOG_LEVEL'] = '0'
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    options.add_argument('--disable-notifications')
+    options.add_argument('--disable-blink-features')
+    options.add_argument('--disable-blink-features=AutomationControlled')
+    driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
+    wait = WebDriverWait(driver, 45)
+    return driver, wait
 
 
-
-# Definitions for Selenium, don't change them
-
-driver = webdriver.Chrome('\Program Files/chromedriver')
-Xtream_home = "http://149.248.20.234:25500/login.php"
-login_button = "//button[@type='submit']"
-
-
-
-
-
-# Xtream Log in
-def login():
-    # Open Xtream on Chrome Driver
-    driver.get(Xtream_home)
-    time.sleep(2)
-
-    # Log in
-    user = driver.find_element_by_name("username")
-    user.send_keys(user_name)
-    time.sleep(2)
-    pas = driver.find_element_by_name("password")
-    pas.send_keys(user_password)
-    time.sleep(2)
-    driver.find_element_by_xpath(login_button).click()
-    time.sleep(2)
-
-
-
-
-login()
+# opening the site in browser
+driver, wait = get_browser()
+driver.get('http://149.248.20.234:25500/login.php?referrer=/dashboard.php')
