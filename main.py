@@ -22,5 +22,18 @@ def get_browser():
 
 
 # opening the site in browser
+
+user_name = "admin"
+user_password = "xcadmin"
+
 driver, wait = get_browser()
-driver.get('http://149.248.20.234:25500/login.php?referrer=/dashboard.php')
+driver.get('http://149.248.20.234:25500/login.php')
+
+
+wait.until(ec.presence_of_element_located((By.NAME, 'username'))).send_keys(user_name)
+wait.until(ec.presence_of_element_located((By.NAME, 'password'))).send_keys(user_password)
+wait.until(ec.presence_of_element_located((By.XPATH, "//button[@type='submit']"))).click()
+
+# driver.find_element_by_name("username").send_keys(user_name)
+# driver.find_element_by_name("password").send_keys(user_password)
+# driver.find_element_by_xpath("//button[@type='submit']").click()
