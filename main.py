@@ -48,4 +48,4 @@ def goto_manage_series():
 login()
 goto_manage_series()
 
-driver.find_element_by_xpath(add_series).click().perform()
+driver.find_element_by_xpath(add_series).click()
