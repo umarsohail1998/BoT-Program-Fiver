@@ -14,7 +14,7 @@ Xtream_home = "http://149.248.20.234:25500/login.php"  #Site url
 login_button = "//button[@type='submit']" #For login
 subMenu_Vod = "//html/body/header/div[2]/div/div/ul/li[5]" #complete Xpath
 manage_series ="/html/body/header/div[2]/div/div/ul/li[5]/ul/li[1]/ul/li[5]"  #complete Xpath
-add_series = "/html/body/div/div/div[1]/div/div/div/ol/li/a[4]/button" #to add series
+add_series = "/html/body/div/div/div[1]/div/div/div/ol/li/a[4]/button" #complete Xpath
 
 
 
