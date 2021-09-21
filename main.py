@@ -37,11 +37,9 @@ def login():
     time.sleep(2)
 
 #Select VOD and then select manage series
-
 def goto_manage_series():
     vod = driver.find_element_by_xpath(subMenu_Vod)
     man_ser = driver.find_element_by_xpath(manage_series)
-
     actions = ActionChains(driver)
     actions.move_to_element(vod).move_to_element(man_ser).click().perform()
 
