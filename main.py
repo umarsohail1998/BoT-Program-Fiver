@@ -3,8 +3,8 @@ from selenium import webdriver
 from selenium.webdriver import ActionChains
 
 # Your Xtream account details
-user_name = "admin" #username
-user_password = "xcadmin" #password
+user_name = "admin"
+user_password = "xcadmin"
 
 
 
@@ -14,7 +14,7 @@ Xtream_home = "http://149.248.20.234:25500/login.php"  #Site url
 login_button = "//button[@type='submit']" #For login
 subMenu_Vod = "//html/body/header/div[2]/div/div/ul/li[5]" #complete Xpath
 manage_series ="/html/body/header/div[2]/div/div/ul/li[5]/ul/li[1]/ul/li[5]"  #complete Xpath
-
+add_series = "/html/body/div/div/div[1]/div/div/div/ol/li/a[4]/button" #to add series
 
 
 
@@ -47,3 +47,5 @@ def goto_manage_series():
 #function call "main"
 login()
 goto_manage_series()
+
+driver.find_element_by_xpath(add_series).click().perform()
