@@ -3,19 +3,18 @@ from selenium import webdriver
 from selenium.webdriver import ActionChains
 
 # Your Xtream account details
-user_name = "admin"
-user_password = "xcadmin"
+user_name = "admin" #username
+user_password = "xcadmin" #password
 
 
 
 # Definitions for Selenium, don't change them
+driver = webdriver.Chrome('\Program Files/chromedriver') #chromedriver file path
+Xtream_home = "http://149.248.20.234:25500/login.php"  #Site url
+login_button = "//button[@type='submit']" #For login
+subMenu_Vod = "//html/body/header/div[2]/div/div/ul/li[5]" #complete Xpath
+manage_series ="/html/body/header/div[2]/div/div/ul/li[5]/ul/li[1]/ul/li[5]"  #complete Xpath
 
-driver = webdriver.Chrome('\Program Files/chromedriver')
-Xtream_home = "http://149.248.20.234:25500/login.php"
-login_button = "//button[@type='submit']"
-subMenu_Vod = "//html/body/header/div[2]/div/div/ul/li[5]"
-manage_series ="/html/body/header/div[2]/div/div/ul/li[5]/ul/li[1]/ul/li[5]"
-manage_series ="/html/body/header/div[2]/div/div/ul/li[5]/ul/li[1]/ul/li[5]"
 
 
 
@@ -43,5 +42,8 @@ def goto_manage_series():
     actions = ActionChains(driver)
     actions.move_to_element(vod).move_to_element(man_ser).click().perform()
 
+
+
+#function call "main"
 login()
 goto_manage_series()
