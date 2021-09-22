@@ -51,7 +51,8 @@ driver.find_element_by_id('select2-tmdb_search-container').click()
 
 # issue here.....
 options = driver.find_element_by_id('select2-tmdb_search-results')
-options[len(options)-1].click()
+driver.find_elements_by_id('select2-tmdb_search-results')[-1].click()
+# options[len(options)-1].click()
 
 driver.find_element_by_id("stream_source").send_keys(url)
 driver.find_element_by_name("Next").click()
