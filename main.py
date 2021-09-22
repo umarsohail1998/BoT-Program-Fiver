@@ -59,6 +59,5 @@ driver.find_element_by_name("Next").click()
 driver.find_element_by_name("Next").click()
 driver.find_element_by_name('submit_stream').click()
 
-
 # driver.find_element_by_name("password").send_keys(user_password)
 # driver.find_element_by_xpath("//button[@type='submit']").click()
