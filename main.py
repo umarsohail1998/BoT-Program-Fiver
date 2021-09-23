@@ -58,14 +58,14 @@ def Add_serie(driver, name):
     driver.find_element_by_id('select2-tmdb_search-container').click()
     sleep(1)        
     html_list = driver.find_element_by_id("select2-tmdb_search-results")
-    # html_list.find_elements_by_tag_name("li")[1].click()
+    html_list.find_elements_by_tag_name("li")[1].click()
     
-    rows  = html_list.find_elements_by_tag_name("li")
-    for idx, row in enumerate(rows):
-        if ismatch(name , row.text):
-            rows[idx+1].click()
-            print(row.text, name)
-            break
+    # rows  = html_list.find_elements_by_tag_name("li")
+    # for idx, row in enumerate(rows):
+    #     if ismatch(name , row.text):
+    #         rows[idx+1].click()
+    #         print(row.text, name)
+    #         break
 
     driver.find_element_by_xpath('//*[@id="stream-details"]/div/div/div[4]/div/span/span[1]/span/ul').click()
     driver.find_element_by_id('select2-bouquets-results').click()
@@ -104,10 +104,11 @@ def find_All_Series(driver):
 
 user_name = "admin"
 user_password = "xcadmin"
-s = 1
-ep = 6
-url = "https://srv1.streamsology.net:8443/series/darrellmills/Kv66ULdfPX/22995.mkv"
 web_Srs_dict = 0
+
+# s = 1
+# ep = 6
+# url = "https://srv1.streamsology.net:8443/series/darrellmills/Kv66ULdfPX/22995.mkv"
 
 driver, wait = get_browser()
 driver.get('http://149.248.20.234:25500/login.php')
@@ -131,44 +132,44 @@ file_record = Extractdata.getData()
 # for x in list(file_record.keys()):
     # if x not in list(web_Srs_dict.keys()):
         # print(x)
-Add_series_to_web(driver, list(web_Srs_dict.keys()), list(file_record.keys()))
+# Add_series_to_web(driver, list(web_Srs_dict.keys()), list(file_record.keys()))
 
 
-# driver.get("http://149.248.20.234:25500/series.php")
+for x, y in file_record.items():
 
-# driver.close()
-# for x, y in file_record.items():
-#     for i in y:
-#         print(x, i['S#'], i['EP#'])
+    driver.get("http://149.248.20.234:25500/series.php")
+    if web_Srs_dict.__contains__(x):
+        id = web_Srs_dict[x]
 
+        for i in y:
+            driver.get(f"http://149.248.20.234:25500/episode.php?sid={id}")
 
-# driver.get("http://149.248.20.234:25500/episode.php?sid=1")
+            # print(x, i['S#'], i['EP#'], i['URL'])
+            s = int(i['S#'][1:])
+            ep = int(i['EP#'][1:])
+            url = i['URL']
 
-# driver.implicitly_wait(3)
+            sleep(1)
+            driver.find_element_by_id("season_num").send_keys(s)
+            driver.find_element_by_id("episode").send_keys(ep)
+            sleep(4)
+            driver.find_element_by_id('select2-tmdb_search-container').click()
 
-# driver.find_element_by_id("season_num").send_keys(s)
-# driver.find_element_by_id("episode").send_keys(ep)
-
-
-# driver.find_element_by_id('select2-tmdb_search-container').click()
-
-# # tmp = driver.find_element_by_id("select2-tmdb_search-results")
-# # for x in tmp:
-# #     print(x.get_attribute('innerHTML'))
-
-# html_list = driver.find_element_by_id("select2-tmdb_search-results")
-# html_list.find_elements_by_tag_name("li")[-1].click()
-
-# driver.find_element_by_id("stream_source").send_keys(url)
-
-# driver.find_element_by_link_text("Next").click()
-# driver.find_element_by_link_text("Next").click()
-# driver.find_element_by_link_text("Next").click()
-
-# source = driver.find_element_by_link_text("Main Server")
-# target = driver.find_element_by_link_text("Stream Source")
-
-# action_chains = ActionChains(driver)
-# action_chains.drag_and_drop(source, target).perform()
-
-# driver.find_element_by_name('submit_stream').click()
+            html_list = driver.find_element_by_id("select2-tmdb_search-results")
+            html_list.find_elements_by_tag_name("li")[ep].click()
+            sleep(1)
+            driver.find_element_by_id("stream_source").send_keys(url)
+            sleep(1)
+            driver.find_element_by_link_text("Next").click()
+            sleep(1)
+            driver.find_element_by_link_text("Next").click()
+            sleep(1)
+            driver.find_element_by_link_text("Next").click()
+            sleep(1)
+            source = driver.find_element_by_link_text("Main Server")
+            target = driver.find_element_by_link_text("Stream Source")
+            sleep(1)
+            action_chains = ActionChains(driver)
+            action_chains.drag_and_drop(source, target).perform()
+            sleep(1)
+            driver.find_element_by_name('submit_stream').click()
