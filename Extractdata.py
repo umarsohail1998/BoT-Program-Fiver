@@ -4,6 +4,7 @@ data = open('file.txt', 'r')
 data.readline()
 
 
+
 def makedict(S_no, ep_no, url):
     return {
         'S#': S_no,
@@ -29,6 +30,10 @@ while True:
     else:
        dt[S_name] = [] 
        dt[S_name].append(makedict(s_no, ep_no, url))
-       
-with open('data.json', 'w') as fp:
-    json.dump(dt, fp,  indent=4)
+  
+     
+def getData():
+    return dt
+     
+# with open('data.json', 'w') as fp:
+#     json.dump(dt, fp,  indent=4)
